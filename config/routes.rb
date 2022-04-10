@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :items, except: [:destroy]
+  end
   scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about', as: 'about'

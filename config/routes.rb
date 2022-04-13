@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
   namespace :admin do
     root to: 'homes#top'
   end
@@ -18,6 +13,10 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about', as: 'about'
+  end
+
+  scope module: :public do
+    resources :items, only: [:index, :show]
   end
 
   devise_for :customers, skip: [:passwords], controllers: {

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
   end
-
   namespace :admin do
     resources :items, except: [:destroy]
   end
@@ -14,7 +13,9 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about', as: 'about'
   end
-
+  scope module: :public do
+    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+  end
   scope module: :public do
     resources :items, only: [:index, :show]
   end

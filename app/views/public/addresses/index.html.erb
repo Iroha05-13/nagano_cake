@@ -1,2 +1,60 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div>
+      <% if @address.errors.any? %>
+        <div id="error_explanation">
+          <h3><%= @address.errors.count %>errors prohibited this obj form being saved:</h3>
+            <ul>
+              <% @address.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+      <h5 class="bg-light">配送先登録/一覧</h5>
+
+      <%= form_with model: @address, url: "/addresses", method: :post do |f| %>
+        <table class="table table-borderless table-sm">
+          <tr>
+            <td><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :address, "住所" %></td>
+            <td><%= f.text_field :address %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :name, "宛名" %></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+        </table>
+
+        <div class="form-group">
+          <%= f.submit "新規登録", class: "btn btn-success btn-sm px-5" %>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <table class="table table-bordered table-sm">
+        <tr class="table-active">
+          <td>郵便番号</td>
+          <td>住所</td>
+          <td>宛名</td>
+          <td></td>
+        </tr>
+
+        <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
+            <td>
+              <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success btn-sm" %>
+              <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger btn-sm" %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

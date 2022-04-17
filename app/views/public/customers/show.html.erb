@@ -4,31 +4,31 @@
       <h5 class="bg-light">マイページ</h5>
 
       <h4><strong>登録情報</strong></h4>
-      <%= link_to "編集する", edit_customers_path, class: "btn btn-success btn-sm px-4" %>
+      <%= link_to "編集する", edit_customers_path, class: "btn btn-success btn-sm px-4 m-3" %>
 
       <table class="table table-bordered table-sm">
         <tr>
-          <td class="bg-light">氏名</td>
+          <td class="table-active">氏名</td>
           <td><%= @customer.last_name + @customer.first_name %></td>
         </tr>
         <tr>
-          <td class="bg-light">かな</td>
+          <td class="table-active">かな</td>
           <td><%= @customer.last_name_kana + @customer.first_name_kana %></td>
         </tr>
         <tr>
-          <td class="bg-light">郵便番号</td>
+          <td class="table-active">郵便番号</td>
           <td><%= @customer.postal_code %></td>
         </tr>
         <tr>
-          <td class="bg-light">住所</td>
+          <td class="table-active">住所</td>
           <td><%= @customer.address %></td>
         </tr>
         <tr>
-          <td class="bg-light">電話番号</td>
+          <td class="table-active">電話番号</td>
           <td><%= @customer.telephone_number %></td>
         </tr>
         <tr>
-          <td class="bg-light">メールアドレス</td>
+          <td class="table-active">メールアドレス</td>
           <td><%= @customer.email %></td>
         </tr>
       </table>

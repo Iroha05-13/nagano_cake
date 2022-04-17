@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about', as: 'about'
   end
   scope module: :public do
-    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+    resource :customers, only: [:show, :edit, :update]
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch 'customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
   end
   scope module: :public do
     resources :items, only: [:index, :show]

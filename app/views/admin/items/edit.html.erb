@@ -1,5 +1,5 @@
-<div>
-  <div>
+<div class="container">
+  <div class="row">
     <div>
       <% if @item.errors.any? %>
         <div id="error_explanation">
@@ -12,11 +12,11 @@
         </div>
       <% end %>
 
-      <h4>商品編集</h4>
+      <h5 class="bg-light">商品編集</h5>
 
       <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
         <div class="form-group">
-          <table>
+          <table class="table table-borderless">
             <tr>
               <td><%= f.label :image, "商品画像" %></td>
               <td><%= f.file_field :image, accept: "image/*" %></td>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="form-group">
-          <%= f.submit "変更を保存", class: "btn btn-success" %>
+          <%= f.submit "変更を保存", class: "btn btn-success px-4" %>
         </div>
       <% end %>
     </div>

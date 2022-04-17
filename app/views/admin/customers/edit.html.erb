@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div>
-      <h4><%= @customer.last_name + @customer.first_name %><span>さんの</span>会員情報編集</h4>
+    <div class="">
+      <h5 class="bg-light"><%= @customer.last_name + @customer.first_name %><span>さんの</span>会員情報編集</h5>
 
       <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
         <div class="form-group">
-          <table>
+          <table class="table table-borderless">
             <tr>
               <td>会員ID</td>
               <td><%= @customer.id %></td>

@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div>
-      <h4><%= @customer.last_name + @customer.first_name %><span>さんの</span>会員詳細</h4>
+      <h5 class="bg-light"><%= @customer.last_name + @customer.first_name %><span>さんの</span>会員詳細</h5>
 
-      <table>
+      <table class="table table-borderless table-sm">
         <tr>
           <td>会員ID</td>
           <td><%= @customer.id %></td>

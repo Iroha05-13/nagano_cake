@@ -15,39 +15,45 @@
     <head>
       <nav class="navbar navbar-expand-lg navbar-light border col-12">
         <div class="container">
-          <a class="navbar-brand p-3" href="/">
+          <a class="navbar-brand pt-3" href="/">
             <%= image_tag "Logokako-shadow-lGFrMffM5042jPdp", :size => "260x50" %>
           </a>
+          <% if customer_signed_in? %>
+            <p>ようこそ、<%= current_customer.last_name %>さん！</p>
+          <% end %>
           <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
               <li>
-                <%= link_to "商品一覧", items_path, class: "nav-link text-dark btn btn-outline-secondary m-3" %>
+                <%= link_to "マイページ", customers_path, class: "nav-link text-dark btn btn-outline-secondary px-2 ml-5" %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-secondary m-3" %>
+                <%= link_to "商品一覧", items_path, class: "nav-link text-dark btn btn-outline-secondary px-3 ml-5" %>
+              </li>
+              <li>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-secondary px-2 ml-5" %>
               </li>
             <% elsif admin_signed_in? %>
               <li>
-                <%= link_to "商品一覧", admin_items_path, class: "nav-link text-dark btn btn-outline-secondary m-3" %>
+                <%= link_to "商品一覧", admin_items_path, class: "nav-link text-dark btn btn-outline-secondary px-3 ml-5" %>
               </li>
               <li>
-                <%= link_to "会員一覧", admin_customers_path, class: "nav-link text-dark btn btn-outline-secondary m-3" %>
+                <%= link_to "会員一覧", admin_customers_path, class: "nav-link text-dark btn btn-outline-secondary px-3 ml-5" %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-secondary m-3" %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-secondary px-2 ml-5" %>
               </li>
             <% else %>
               <li>
-                <%= link_to "About", about_path, class: "nav-link text-dark btn btn-outline-secondary m-3" %>
+                <%= link_to "About", about_path, class: "nav-link text-dark btn btn-outline-secondary px-4 ml-5" %>
               </li>
               <li>
-                <%= link_to "商品一覧", items_path, class: "nav-link text-dark btn btn-outline-secondary m-3" %>
+                <%= link_to "商品一覧", items_path, class: "nav-link text-dark btn btn-outline-secondary px-3 ml-5" %>
               </li>
               <li>
-                <%= link_to "新規登録", new_customer_registration_path, class: "nav-link text-dark btn btn-outline-secondary m-3" %>
+                <%= link_to "新規登録", new_customer_registration_path, class: "nav-link text-dark btn btn-outline-secondary px-3 ml-5" %>
               </li>
               <li>
-                <%= link_to "ログイン", new_customer_session_path, class: "nav-link text-dark btn btn-outline-secondary m-3" %>
+                <%= link_to "ログイン", new_customer_session_path, class: "nav-link text-dark btn btn-outline-secondary px-3 ml-5" %>
               </li>
             <% end %>
           </ul>

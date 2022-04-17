@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row">
     <div>
-      <h4>会員一覧</h4>
+      <h5 class="bg-light">会員一覧</h5>
 
-      <table class="table">
-        <tr>
-          <th>会員ID</th>
-          <th>氏名</th>
-          <th>メールアドレス</th>
-          <th>ステータス</th>
-        </tr>
+      <table class="table table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
 
         <% @customers.each do |customer| %>
           <tr>

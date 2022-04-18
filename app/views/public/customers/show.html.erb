@@ -32,6 +32,11 @@
           <td><%= @customer.email %></td>
         </tr>
       </table>
+
+      <div>
+        配送先
+        <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary btn-sm px-4 ml-5" %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'cart_items/index'
-  end
   namespace :admin do
     root to: 'homes#top'
   end
@@ -26,6 +23,10 @@ Rails.application.routes.draw do
   end
   scope module: :public do
     resources :addresses, except: [:new, :show]
+  end
+  scope module: :public do
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
   end
 
   devise_for :customers, skip: [:passwords], controllers: {

@@ -28,6 +28,11 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
   end
+  scope module: :public do
+    post 'orders/confirm' => 'orders#confirm', as: 'confirm'
+    get 'orders/complete', as: 'complete'
+    resources :orders, only: [:new, :index, :create, :show]
+  end
 
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",

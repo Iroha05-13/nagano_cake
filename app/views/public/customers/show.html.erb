@@ -3,8 +3,10 @@
     <div>
       <h5 class="bg-light">マイページ</h5>
 
-      <h4><strong>登録情報</strong></h4>
-      <%= link_to "編集する", edit_customers_path, class: "btn btn-success btn-sm px-4 m-3" %>
+      <div>
+        <strong>登録情報</strong>
+        <%= link_to "編集する", edit_customers_path, class: "btn btn-success btn-sm px-4 m-3" %>
+      </div>
 
       <table class="table table-bordered table-sm">
         <tr>
@@ -34,7 +36,7 @@
       </table>
 
       <div>
-        配送先
+        <strong>配送先</strong>
         <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary btn-sm px-4 ml-5" %>
       </div>
     </div>

@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9 offset-md-3">
+
       <div class="row">
         <div class="col-md-5">
           <%= image_tag @item.get_image(280,280) %>
@@ -10,6 +11,28 @@
           <%= @item.introduction %><br>
           <br>
           <strong>￥<%= (@item.price*1.1).floor %>(税込)</strong>
+
+          <div>
+            <% if @item.errors.any? %>
+              <%= @item.errors.count %>errors
+              <ul>
+                <%= @item.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
+
+          <%= form_with model: @cart_item, url: '/cart_items', method: :post do |f| %>
+            <div class="form-group">
+              <% if customer_signed_in? %>
+                <%= f.hidden_field :customer_id, :value => current_customer.id, class: "form-control" %>
+                <%= f.hidden_field :item_id, :value => @item.id, class: "form-control" %>
+                <%= f.select :amount, *[1..10], {include_blank: "個数選択"}, class: "form-control-sm" %>
+                <%= f.submit "カートに入れる", class: "btn btn-success btn-sm px-3 ml-5" %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
 

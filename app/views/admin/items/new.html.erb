@@ -4,11 +4,11 @@
       <% if @item.errors.any? %>
         <div id="error_explanation">
           <h3><%= @item.errors.count %>errors prohibited this obj form being saved:</h3>
-            <ul>
-              <% @item.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
 

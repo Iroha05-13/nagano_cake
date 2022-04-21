@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about', as: 'about'
   end
   scope module: :public do
-    resource :customers, only: [:show, :edit, :update]
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+    resource :customers, only: [:show, :edit, :update]
   end
   scope module: :public do
     resources :items, only: [:index, :show]
@@ -25,8 +25,8 @@ Rails.application.routes.draw do
     resources :addresses, except: [:new, :show]
   end
   scope module: :public do
-    resources :cart_items, only: [:index, :update, :destroy, :create]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    resources :cart_items, only: [:index, :update, :destroy, :create]
   end
 
   devise_for :customers, skip: [:passwords], controllers: {

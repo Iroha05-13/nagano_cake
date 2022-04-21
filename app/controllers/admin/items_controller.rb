@@ -30,7 +30,7 @@ class Admin::ItemsController < ApplicationController
       redirect_to admin_item_path(@item.id)
     else
       render :edit
-    __END__
+    end
   end
 
   private

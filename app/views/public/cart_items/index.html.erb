@@ -1,2 +1,56 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <h5 class="bg-light">ショッピングカート</h5>
+      <%= flash[:notice] %>
+
+      <% if @cart_items.any? %>
+
+        <%= link_to "カートを空にする", destroy_all_path, method: :delete, "data-confirm" => "本当に空にしますか？", class: "btn btn-danger btn-sm px-4" %>
+
+        <table class="table table-bordered table-sm">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td>
+                <%= image_tag cart_item.item.get_image(80,60) %>
+                <%= cart_item.item.name %>
+              </td>
+              <td><%= cart_item.item.with_tax_price %></td>
+              <td><%= cart_item.amount %></td>
+              <td><%= cart_item.subtotal %></td>
+              <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm px-4" %></td>
+              <% @total_price += cart_item.subtotal %>
+            </tr>
+          <% end %>
+        </table>
+
+        <div class="row">
+          <div class="col-3 offset-1">
+            <%= link_to "買い物を続ける", items_path, class: "btn btn-primary btn-sm px-3" %>
+          </div>
+          <div class="col-3 offset-5">
+            <table class="table table-bordered">
+              <tr>
+                <td>合計金額</td>
+                <td><%= @total_price %></td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+
+
+      <% else %>
+        <h3>カートに商品がありません。</h3>
+        <%= link_to "商品を探す", items_path, class: "btn btn-primary px-4" %>
+      <% end %>
+    </div>
+  </div>
+</div>

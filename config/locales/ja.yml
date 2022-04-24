@@ -2,3 +2,9 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%s"
+
+  enums:
+    order:
+      payment:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"

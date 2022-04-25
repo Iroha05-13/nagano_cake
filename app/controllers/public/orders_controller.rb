@@ -10,9 +10,20 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     @order.customer_id = current_customer.id
     if @order.save
-      
-    
-
+      cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.item_id = cart_item.item_id
+        order_detail.order_id = @order.id
+        order_detail.order_amount = cart_item.amount
+        order_detail.order_price = cart_item.item.price
+        order_detail.save
+      end
+      redirect_to complete_path
+      cart_items.destroy_all
+    else
+      @order = Order.new
+      render :new
+    end
   end
 
   def index

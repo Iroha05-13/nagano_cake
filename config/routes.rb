@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   namespace :admin do
+    resources :orders, only: [:index, :update]
+  end
+  namespace :admin do
+    resources :order_details, only: [:update]
+  end
+  namespace :admin do
     root to: 'homes#top'
   end
   namespace :admin do

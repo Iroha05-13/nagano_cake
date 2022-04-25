@@ -3,7 +3,7 @@
     <div class="col-12">
       <h5 class="bg-light">会員情報編集</h5>
 
-      <%= form_with model: @customer, url: customers_path(@customer.id), method: :patch do |f| %>
+      <%= form_with model: @customer, url: customers_path(@customer.id), method: :patch, local: true do |f| %>
         <div class="form-group">
           <table class="table table-borderless table-sm">
             <tr>

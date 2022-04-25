@@ -3,7 +3,7 @@
     <div class="col-12">
       <h5 class="bg-light col-2">配送先編集</h5>
 
-      <%= form_with model: @address, url: address_path(@address.id), method: :patch do |f| %>
+      <%= form_with model: @address, url: address_path(@address.id), method: :patch, local: true do |f| %>
         <table class="table table-borderless table-sm">
           <tr>
             <td class="col-3"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>

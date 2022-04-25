@@ -14,7 +14,7 @@
 
       <h5 class="bg-light">商品新規登録</h5>
 
-      <%= form_with model: @item, url: "/admin/items", method: :post do |f| %>
+      <%= form_with model: @item, url: "/admin/items", method: :post, local: true do |f| %>
         <div class="form-group">
           <table class="table table-borderless">
             <tr>

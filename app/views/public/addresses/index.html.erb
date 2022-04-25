@@ -13,7 +13,8 @@
       <% end %>
       <h5 class="bg-light">配送先登録/一覧</h5>
 
-      <%= form_with model: @address, url: "/addresses", method: :post do |f| %>
+      <%= flash[:notice] %>
+      <%= form_with model: @address, url: "/addresses", method: :post, local: true do |f| %>
         <table class="table table-borderless table-sm">
           <tr>
             <td class="col-3"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div>
-      <h5 class="bg-light"><%= @customer.last_name + @customer.first_name %><span>さんの</span>会員詳細</h5>
+      <h5 class="bg-light"><%= @customer.name %><span>さんの</span>会員詳細</h5>
 
       <table class="table table-borderless table-sm">
         <tr>
@@ -10,11 +10,11 @@
         </tr>
         <tr>
           <td>氏名</td>
-          <td><%= @customer.last_name + @customer.first_name %></td>
+          <td><%= @customer.name_s %></td>
         </tr>
         <tr>
           <td>ふりがな</td>
-          <td><%= @customer.last_name_kana + @customer.first_name_kana %></td>
+          <td><%= @customer.name_kana_s %></td>
         </tr>
         <tr>
           <td>郵便番号</td>

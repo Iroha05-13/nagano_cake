@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h5 class="bg-activ">注文情報確認</h5>
+
+      <table class="table table-bordered table-sm">
+        <tr class="table-activ">
+          <td>商品名</td>
+          <td>単価(税込)</td>
+          <td>数量</td>
+          <td>小計</td>
+        </tr>
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td>
+              <%= image_tag cart_item.item.get_image(50,40) %>
+              <%= cart_item.item.name %>
+            </td>
+            <td><%= cart_item.item.with_tax_price %></td>
+            <td><%= cart_item.amount %></td>
+            <td><%= cart_item.subtotal %></td>
+            <% @total_price += cart_item.subtotal %>
+          </tr>
+        <% end %>
+      </table>
+
+      <table class="table table-bordered table-sm">
+        <tr>
+          <td class="table-activ">送料</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="table-activ">商品合計</td>
+          <td><%= @total_price %></td>
+        </tr>
+        <tr>
+          <td class="table-activ">請求金額</td>
+          <td></td>
+        </tr>
+      </table>
+      
+      <strong>支払方法</strong>
+      <p>
+        <strong>お届け先</strong>
+        〒<%= @order.postal_code %>
+        <%= @order.address %>
+        <%= @order.name %>
+      </p>
+    </div>
+  </div>
+</div>

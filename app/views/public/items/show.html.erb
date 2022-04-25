@@ -23,7 +23,7 @@
             <% end %>
           </div>
 
-          <%= form_with model: @cart_item, url: '/cart_items', method: :post do |f| %>
+          <%= form_with model: @cart_item, url: '/cart_items', method: :post, local: true do |f| %>
             <div class="form-group">
               <% if customer_signed_in? %>
                 <%= f.hidden_field :item_id, :value => @item.id, class: "form-control" %>

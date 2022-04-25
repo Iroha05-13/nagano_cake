@@ -1,9 +1,55 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h5 class="bg-lighat">注文情報入力</h5>
-      
-      
+      <h5 class="bg-light">注文情報入力</h5>
+
+      <%= form_with model: @order, url: "/orders/confirm", local: true do |f| %>
+        <div class="form-group">
+          <p><strong>支払方法</strong></p>
+          <%= f.radio_button :payment, 0 %>
+          <%= f.label :payment, "クレジットカード", value: 0 %><br>
+          <%= f.radio_button :payment, 1 %>
+          <%= f.label :payment, "銀行振込", value: 1 %>
+        </div>
+
+        <div class="form-group radio_button">
+          <p><strong>お届け先</strong></p>
+          <%= f.radio_button :address_number, 1 %>
+          <%= f.label :address_number_1, "ご自身の住所" %><br>
+          〒<%= current_customer.postal_code %>
+          <%= current_customer.address %><br>
+          <%= current_customer.name %><br>
+        </div>
+
+        <div class="form-group radio_button">
+          <%= f.radio_button :address_number, 2 %>
+          <%= f.label :address_number_2, "登録済み住所から選択" %><br>
+          <%= f.collection_select(:address_id, @addresses, :id, :order_address) %>
+        </div>
+
+        <div class="form-group radio_button">
+          <%= f.radio_button :address_number, 3 %>
+          <%= f.label :address_number_3, "新しいお届け先" %>
+          <table class="table table-borderless table-sm">
+            <tr>
+              <td class="col-2"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>
+              <td><%= f.text_field :postal_code %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :address, "住所" %></td>
+              <td><%= f.text_field :address, class: "col-md-7" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :name, "宛名" %></td>
+              <td><%= f.text_field :name %></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-sm px-3" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

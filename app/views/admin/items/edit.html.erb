@@ -14,7 +14,7 @@
 
       <h5 class="bg-light">商品編集</h5>
 
-      <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
+      <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch, local: true do |f| %>
         <div class="form-group">
           <table class="table table-borderless">
             <tr>

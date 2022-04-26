@@ -42,10 +42,10 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
     elsif params[:order][:address_number] == "2"
-      if Address.exists?(name: params[:order][:address_id])
-        @order.name = Address.find(params[:order][:address_id]).name
-        @order.postal_code = Address.find(params[:order][:address_id]).postal_code
-        @order.address = Address.find(params[:order][:address_id]).address
+      if current_customer.addresses.find_by(id: params[:address])
+        @order.name = Address.find(params[:address][:id]).name
+        @order.postal_code = Address.find(params[:address][:id]).postal_code
+        @order.address = Address.find(params[:address][:id]).address
       else
         render :new
       end
@@ -61,6 +61,7 @@ class Public::OrdersController < ApplicationController
 
     @cart_items = current_customer.cart_items.all
     @total = 0
+    @order.total_price = @total + @order.postage
   end
 
   def complete
@@ -69,7 +70,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :postal_code, :address, :status, :total_price, :postage)
+    params.require(:order).permit(:name, :postal_code, :address, :total_price, :postage)
   end
 
   def address_params

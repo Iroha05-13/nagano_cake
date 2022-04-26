@@ -24,7 +24,7 @@
         <div class="form-group radio_button">
           <%= f.radio_button :address_number, 2 %>
           <%= f.label :address_number_2, "登録済み住所から選択" %><br>
-          <%= f.collection_select(:address_id, @addresses, :id, :order_address) %>
+          <%= f.collection_select(:address, @addresses, :id, :order_address) %>
         </div>
 
         <div class="form-group radio_button">
@@ -49,6 +49,7 @@
         <div class="form-group">
           <%= f.hidden_field :status, :value => "0" %>
           <%= f.hidden_field :postage, :value => "800" %>
+          <%= f.hidden_field :total_price, :value => "0" %>
           <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-sm px-3" %>
         </div>
       <% end %>

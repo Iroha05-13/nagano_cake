@@ -35,7 +35,7 @@
         </tr>
         <tr>
           <td class="table-activ">請求金額</td>
-          <td><%= @order.total_price %></td>
+          <td><%= @order.total_price + @total %></td>
         </tr>
       </table>
 
@@ -53,7 +53,7 @@
     <div class="col-md-12">
       <%= form_with model: @order, url: "/orders", method: :post, local: true do |f| %>
         <div class="form-group">
-          <%= f.hidden_field :order_id, :value => @order.id %>
+          <%= f.hidden_field :order, :value => @order.id %>
           <%= f.submit "注文を確定する", class: "btn btn-success btn-sm px-3" %>
         </div>
       <% end %>

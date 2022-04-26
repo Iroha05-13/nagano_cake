@@ -31,7 +31,7 @@
             </tr>
             <tr>
               <td><%= f.label :genre_id, "ジャンル" %></td>
-              <td></td>
+              <td><%= f.collection_select(:genre_id, @genres, :id, :name) %></td>
             </tr>
             <tr>
               <td><%= f.label :price, "税抜価格" %></td>

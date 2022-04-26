@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_items = current_customer.cart_items.all #ログイン中のユーザーのカートのみ
-    @total_price = 0
+    @total = 0
   end
 
   def create

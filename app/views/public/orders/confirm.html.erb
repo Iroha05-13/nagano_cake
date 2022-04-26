@@ -19,7 +19,7 @@
             <td><%= cart_item.item.with_tax_price %></td>
             <td><%= cart_item.amount %></td>
             <td><%= cart_item.subtotal %></td>
-            <% @total_price += cart_item.subtotal %>
+            <% @total += cart_item.subtotal %>
           </tr>
         <% end %>
       </table>
@@ -27,19 +27,20 @@
       <table class="table table-bordered table-sm">
         <tr>
           <td class="table-activ">送料</td>
-          <td></td>
+          <td><%= @order.postage %></td>
         </tr>
         <tr>
           <td class="table-activ">商品合計</td>
-          <td><%= @total_price %></td>
+          <td><%= @total %></td>
         </tr>
         <tr>
           <td class="table-activ">請求金額</td>
-          <td></td>
+          <td><%= @order.total_price %></td>
         </tr>
       </table>
-      
+
       <strong>支払方法</strong>
+      <%= @order.payment_i18n %>
       <p>
         <strong>お届け先</strong>
         〒<%= @order.postal_code %>
@@ -52,7 +53,7 @@
     <div class="col-md-12">
       <%= form_with model: @order, url: "/orders", method: :post, local: true do |f| %>
         <div class="form-group">
-          
+          <%= f.hidden_field :order_id, :value => @order.id %>
           <%= f.submit "注文を確定する", class: "btn btn-success btn-sm px-3" %>
         </div>
       <% end %>

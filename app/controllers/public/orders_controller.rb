@@ -2,7 +2,7 @@ class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
     @address = Address.new
-    @addresses = Address.all
+    @addresses = current_customer.addresses.all
   end
 
   def create
@@ -14,8 +14,8 @@ class Public::OrdersController < ApplicationController
         order_detail = OrderDetail.new
         order_detail.item_id = cart_item.item_id
         order_detail.order_id = @order.id
-        order_detail.order_amount = cart_item.amount
-        order_detail.order_price = cart_item.item.price
+        order_detail.amount = cart_item.amount
+        order_detail.price = cart_item.subtotal
         order_detail.save
       end
       redirect_to complete_path
@@ -36,6 +36,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     if params[:order][:address_number] == "1"
       @order.name = current_customer.name
       @order.postal_code = current_customer.postal_code
@@ -59,7 +60,7 @@ class Public::OrdersController < ApplicationController
     end
 
     @cart_items = current_customer.cart_items.all
-    @total_price = 0
+    @total = 0
   end
 
   def complete
@@ -68,7 +69,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :postal_code, :address)
+    params.require(:order).permit(:name, :postal_code, :address, :status, :total_price, :postage)
   end
 
   def address_params

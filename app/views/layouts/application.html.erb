@@ -20,6 +20,8 @@
           </a>
           <% if customer_signed_in? %>
             <p>ようこそ、<%= current_customer.last_name %>さん！</p>
+          <% elsif admin_signed_in? %>
+            <p>管理者ログイン中</p>
           <% end %>
           <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
@@ -41,6 +43,9 @@
               </li>
               <li>
                 <%= link_to "会員一覧", admin_customers_path, class: "nav-link text-dark btn btn-outline-secondary btn-sm px-3 ml-5" %>
+              </li>
+              <li>
+                <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link text-dark btn btn-outline-secondary btn-sm px-2 ml-5" %>
               </li>
               <li>
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark btn btn-outline-secondary btn-sm px-2 ml-5" %>

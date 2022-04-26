@@ -47,6 +47,8 @@
         </div>
 
         <div class="form-group">
+          <%= f.hidden_field :status, :value => "0" %>
+          <%= f.hidden_field :postage, :value => "800" %>
           <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-sm px-3" %>
         </div>
       <% end %>

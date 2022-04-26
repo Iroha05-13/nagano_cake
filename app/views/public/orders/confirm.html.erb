@@ -48,4 +48,14 @@
       </p>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_with model: @order, url: "/orders", method: :post, local: true do |f| %>
+        <div class="form-group">
+          
+          <%= f.submit "注文を確定する", class: "btn btn-success btn-sm px-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

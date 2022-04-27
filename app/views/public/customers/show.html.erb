@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row">
-    <div>
-      <h5 class="bg-light">マイページ</h5>
+    <div class="col-md-11 col-sm-12">
+      <h5 class="mt-4 col-md-2 py-1 text-center">マイページ</h5>
 
       <div>
         <strong>登録情報</strong>
         <%= link_to "編集する", edit_customers_path, class: "btn btn-success btn-sm px-4 m-3" %>
       </div>
 
-      <table class="table table-bordered table-sm">
+      <table class="table table-bordered table-sm col-md-8 col-sm-12">
         <tr>
-          <td class="table-active">氏名</td>
+          <td class="table-active col-md-3 col-sm-5">氏名</td>
           <td><%= @customer.name_s %></td>
         </tr>
         <tr>
@@ -35,9 +35,17 @@
         </tr>
       </table>
 
-      <div>
-        <strong>配送先</strong>
-        <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary btn-sm px-4 ml-5" %>
+      <div class="col-md-4 col-sm-12">
+        <table class="table table-borderless table-sm">
+          <tr>
+            <td><strong>配送先</strong></td>
+            <td><%= link_to "一覧を見る", addresses_path, class: "btn btn-primary btn-sm px-4 ml-5" %><br></td>
+          </tr>
+          <tr>
+            <td><strong>注文履歴</strong></td>
+            <td><%= link_to "一覧を見る", orders_path, class: "btn btn-primary btn-sm px-4 ml-5" %></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

@@ -6,30 +6,30 @@
       <%= form_with model: @order, url: "/orders/confirm", local: true do |f| %>
         <div class="form-group">
           <p><strong>支払方法</strong></p>
-          <%= f.radio_button :payment, 0 %>
-          <%= f.label :payment, "クレジットカード", value: 0 %><br>
-          <%= f.radio_button :payment, 1 %>
-          <%= f.label :payment, "銀行振込", value: 1 %>
+          <%= f.radio_button :payment, Order.payments.key(0) %>
+          <%= f.label :payment, Order.payments_i18n[:credit_card] %><br>
+          <%= f.radio_button :payment, Order.payments.key(1) %>
+          <%= f.label :payment, Order.payments_i18n[:transfer] %>
         </div>
 
         <div class="form-group radio_button">
           <p><strong>お届け先</strong></p>
-          <%= f.radio_button :address_number, 1 %>
-          <%= f.label :address_number_1, "ご自身の住所" %><br>
+          <%= f.radio_button :select_address, 0 %>
+          <%= f.label :select_address_0, "ご自身の住所" %><br>
           〒<%= current_customer.postal_code %>
           <%= current_customer.address %><br>
           <%= current_customer.name %><br>
         </div>
 
         <div class="form-group radio_button">
-          <%= f.radio_button :address_number, 2 %>
-          <%= f.label :address_number_2, "登録済み住所から選択" %><br>
-          <%= f.collection_select(:address_, @addresses, :id, :order_address) %>
+          <%= f.radio_button :select_address, 1 %>
+          <%= f.label :select_address_1, "登録済み住所から選択" %><br>
+          <%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :order_address) %>
         </div>
 
         <div class="form-group radio_button">
-          <%= f.radio_button :address_number, 3 %>
-          <%= f.label :address_number_3, "新しいお届け先" %>
+          <%= f.radio_button :select_address, 2 %>
+          <%= f.label :select_address_2, "新しいお届け先" %>
           <table class="table table-borderless table-sm">
             <tr>
               <td class="col-2"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>
@@ -47,9 +47,9 @@
         </div>
 
         <div class="form-group">
-          <%= f.hidden_field :status, :value => "0" %>
+          <%= f.hidden_field :status, :value => Order.statuses.key(0) %>
           <%= f.hidden_field :postage, :value => "800" %>
-          <%= f.hidden_field :total_price, :value => "0" %>
+          <%= f.hidden_field :cart_items, :value => @cart_items, class: "form-control" %>
           <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-sm px-3" %>
         </div>
       <% end %>

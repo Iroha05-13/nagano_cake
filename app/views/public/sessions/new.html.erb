@@ -1,24 +1,35 @@
-<h5 class="bg-light">ログイン</h5>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h5 class="col-md-2 my-3 text-center">ログイン</h5>
 
-<p class="bg-light">会員の方はこちらからログイン</p>
+      <p class="bg-light col-md-4 text-center">会員の方はこちらからログイン</p>
 
-<%= form_with model: @customer, url: customer_session_path do |f| %>
-  <table class="table table-borderless table-sm">
-    <tr>
-      <td><%= f.label :email, "メールアドレス" %></td>
-      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-    </tr>
+      <%= form_with model: @customer, url: customer_session_path do |f| %>
+        <table class="table table-borderless table-sm col-md-10 offset-md-1">
+          <tr>
+            <td class="col-md-3"><%= f.label :email, "メールアドレス" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-8" %></td>
+          </tr>
 
-    <tr>
-      <td><%= f.label :password, "パスワード" %></td>
-      <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-    </tr>
-  </table>
+          <tr>
+            <td><%= f.label :password, "パスワード" %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password", class: "col-md-8" %></td>
+          </tr>
+        </table>
 
-  <div class="actions">
-    <%= f.submit "ログイン", class: "btn btn-primary btn-sm px-4 my-4" %>
+        <div class="actions offset-md-3">
+          <%= f.submit "ログイン", class: "btn btn-primary btn-sm px-4 my-4" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-10 mx-auto">
+      <p class="bg-light col-md-4 my-3 text-center">会員登録がお済みでない方</p>
+      <p class="offset-md-1"><%= render "public/shared/links" %></p>
+    </div>
   </div>
-<% end %>
+</div>
 
-<p class="bg-light">会員登録がお済みでない方</p>
-<%= render "public/shared/links" %>
+
+
+

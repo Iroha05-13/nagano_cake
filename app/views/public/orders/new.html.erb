@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h5 class="bg-light">注文情報入力</h5>
+      <h5 class="my-3 col-md-2 offset-md-1 text-center">注文情報入力</h5>
 
       <%= form_with model: @order, url: "/orders/confirm", local: true do |f| %>
-        <div class="form-group">
+        <div class="form-group radio_button">
           <p><strong>支払方法</strong></p>
           <%= f.radio_button :payment, Order.payments.key(0) %>
           <%= f.label :payment, Order.payments_i18n[:credit_card] %><br>
@@ -50,7 +50,7 @@
           <%= f.hidden_field :status, :value => Order.statuses.key(0) %>
           <%= f.hidden_field :postage, :value => "800" %>
           <%= f.hidden_field :cart_items, :value => @cart_items, class: "form-control" %>
-          <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-sm px-3" %>
+          <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-sm px-3 offset-md-5" %>
         </div>
       <% end %>
     </div>

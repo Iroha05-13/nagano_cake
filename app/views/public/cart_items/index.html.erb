@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container mb-5 pb-5">
   <div class="row">
-    <div class="col-md-12 mx-auto">
-      <h5 class="mt-3 py-1 col-md-3 text-center">ショッピングカート</h5>
+    <div class="col-md-12 mx-auto mb-5 pb-5">
+      <h5 class="mt-4 col-md-3 text-center offset-md-1">ショッピングカート</h5>
       <%= flash[:notice1] %>
 
       <% if @cart_items.any? %>
@@ -24,7 +24,7 @@
                 <%= image_tag cart_item.item.get_image(80,60) %>
                 <%= cart_item.item.name %>
               </td>
-              <td><%= cart_item.item.with_tax_price %></td>
+              <td class=""><%= cart_item.item.with_tax_price %></td>
               <td>
                 <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch, local: true do |f| %>
                   <%= f.select :amount, *[1..10], {selected: cart_item.amount} %>
@@ -53,13 +53,13 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success btn-sm px-3" %>
+            <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success btn-sm px-3 offset-md-5 mt-3" %>
           </div>
         </div>
 
 
       <% else %>
-        <h3>カートに商品がありません。</h3>
+        <h3 class="m-4">カートに商品がありません。</h3>
         <%= link_to "商品を探す", items_path, class: "btn btn-primary px-4" %>
       <% end %>
     </div>

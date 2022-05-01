@@ -1,24 +1,14 @@
 <div class="container">
   <div class="row">
-    <div>
-      <% if @item.errors.any? %>
-        <div id="error_explanation">
-          <h3><%= @item.errors.count %>errors prohibited this obj form being saved:</h3>
-            <ul>
-              <% @item.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-        </div>
-      <% end %>
+    <div class="col-md-10 mx-auto">
 
-      <h5 class="bg-light">商品編集</h5>
+      <h5 class="mt-4 col-md-2 py-1 text-center">商品編集</h5>
 
       <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch, local: true do |f| %>
         <div class="form-group">
-          <table class="table table-borderless">
+          <table class="table table-borderless col-8">
             <tr>
-              <td><%= f.label :image, "商品画像" %></td>
+              <td class="col-3"><%= f.label :image, "商品画像" %></td>
               <td><%= f.file_field :image, accept: "image/*" %></td>
             </tr>
             <tr>

@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div>
-      <h5 class="bg-light"><%= @customer.name %><span>さんの</span>会員詳細</h5>
+    <div class="col-md-8 pb-5">
+      <h5 class="my-4 col-md-5 py-1 text-center"><%= @customer.name %><span>さんの</span>会員詳細</h5>
 
       <table class="table table-borderless table-sm">
         <tr>
-          <td>会員ID</td>
+          <td class="col-3">会員ID</td>
           <td><%= @customer.id %></td>
         </tr>
         <tr>
@@ -44,7 +44,7 @@
         </tr>
       </table>
 
-      <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success" %>
+      <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success offset-md-3" %>
     </div>
   </div>
 </div>

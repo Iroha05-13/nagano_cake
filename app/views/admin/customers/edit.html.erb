@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="">
-      <h5 class="bg-light"><%= @customer.last_name + @customer.first_name %><span>さんの</span>会員情報編集</h5>
+    <div class="col-md-10">
+      <h5 class="my-4 col-md-4 py-1 text-center"><%= @customer.last_name + @customer.first_name %><span>さんの</span>会員情報編集</h5>
 
       <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch, local: true do |f| %>
         <div class="form-group">
           <table class="table table-borderless">
             <tr>
-              <td>会員ID</td>
+              <td class="col-3">会員ID</td>
               <td><%= @customer.id %></td>
             </tr>
             <tr>
@@ -30,7 +30,7 @@
             </tr>
             <tr>
               <td><%= f.label :address, "住所" %></td>
-              <td><%= f.text_field :address %></td>
+              <td><%= f.text_field :address, class: "col-8" %></td>
             </tr>
             <tr>
               <td><%= f.label :telephone_number, "電話番号" %></td>

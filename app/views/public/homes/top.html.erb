@@ -14,13 +14,15 @@
             <h3><strong>新着商品</strong></h3>
             <div class="row">
                 <% @items.each do |item| %>
-                    <div class="col-md-3 col-sm-4">
-                        <%= link_to item_path(item.id) do %>
-                            <%= image_tag item.get_image(170,145) %><br>
-                            <%= item.name %><br>
-                            ￥<%= item.with_tax_price %>
-                        <% end %>
-                    </div>
+                    <% if item.is_active == true %>
+                        <div class="col-md-3 col-sm-4">
+                            <%= link_to item_path(item.id) do %>
+                                <%= image_tag item.get_image(170,145) %><br>
+                                <%= item.name %><br>
+                                ￥<%= item.with_tax_price %>
+                            <% end %>
+                        </div>
+                    <% end %>
                 <% end %>
             </div>
             <p class="offset-md-10"><%= link_to "全ての商品を見る>>", items_path %></p>

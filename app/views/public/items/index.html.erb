@@ -3,16 +3,19 @@
     <div class="col-md-10 mx-auto">
       <h3 class="mt-5"><strong>商品一覧</strong></h3>
       <div class="row">
-        <% @items.each do |item| %>
-          <div class="col-md-3 mb-4">
-            <%= link_to item_path(item.id) do %>
-              <%= image_tag item.get_image(160,120) %><br>
-              <%= item.name %><br>
-              ￥<%= item.with_tax_price %>
+          <% @items.each do |item| %>
+            <% if item.is_active == true %>
+              <div class="col-md-3 mb-4">
+                <%= link_to item_path(item.id) do %>
+                  <%= image_tag item.get_image(160,120) %><br>
+                  <%= item.name %><br>
+                  ￥<%= item.with_tax_price %>
+                <% end %>
+              </div>
             <% end %>
-          </div>
-        <% end %>
+          <% end %>
       </div>
+      <%= paginate @items %>
     </div>
   </div>
 </div>

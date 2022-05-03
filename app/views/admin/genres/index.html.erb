@@ -16,12 +16,14 @@
     <div class="">
       <table class="table table-sm">
         <tr>
-          <th class="table-active">ジャンル</th>
+          <th colspan="2" class="table-active">ジャンル</th>
         </tr>
         <% @genres.each do |genre| %>
           <tr>
             <td>
               <%= genre.name %>
+            </td>
+            <td>
               <%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success btn-sm px-4" %>
             </td>
           </tr>

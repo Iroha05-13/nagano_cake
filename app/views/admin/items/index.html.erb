@@ -23,9 +23,9 @@
             <td><%= item.genre.name %></td>
             <td>
               <% if item.is_active == true %>
-                販売中
+                <strong class="text-success">販売中</strong>
               <% else %>
-                販売停止中
+                <strong class="text-secondary">販売停止中</strong>
               <% end %>
             </td>
           </tr>
